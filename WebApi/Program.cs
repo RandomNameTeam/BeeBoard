@@ -5,6 +5,8 @@ using Persistence;
 using System.Reflection;
 using Application;
 using Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +37,19 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://localhost:6000/";
+        options.Audience = "BeeBoardWebAPI";
+        options.RequireHttpsMetadata = false;
+
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,10 +72,12 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-app.UseExceptionHandler();
+app.UseCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
