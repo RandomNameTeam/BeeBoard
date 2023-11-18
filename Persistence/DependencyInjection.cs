@@ -17,6 +17,12 @@ namespace Persistence
             });
             services.AddScoped<IUserDbContext>(provider =>
                 provider.GetService<UserDbContext>());
+            services.AddDbContext<WorkerDbContext>(options =>
+            {
+                options.UseSqlite(connectionString);
+            });
+            services.AddScoped<IWorkerDbContext>(provider =>
+                provider.GetService<WorkerDbContext>());
 
 
 

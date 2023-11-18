@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
-    config.AddProfile(new AssemblyMappingProfile(typeof(IUserDbContext).Assembly));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IWorkerDbContext).Assembly));
 });
 
 builder.Services.AddApplication();
