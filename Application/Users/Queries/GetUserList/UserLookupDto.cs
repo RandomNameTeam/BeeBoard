@@ -13,6 +13,8 @@ namespace Application.Users.Queries.GetUserList
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -20,7 +22,12 @@ namespace Application.Users.Queries.GetUserList
                 .ForMember(userDto => userDto.Id,
                     otp => otp.MapFrom(user => user.Id))
                 .ForMember(userDto => userDto.Email,
-                    otp => otp.MapFrom(user => user.Email));
+                    otp => otp.MapFrom(user => user.Email))
+                .ForMember(userDto => userDto.Name,
+                    otp => otp.MapFrom(user => user.Name))
+                .ForMember(userDto => userDto.LastName,
+                    otp => otp.MapFrom(user => user.LastName));
+
         }
     }
 }

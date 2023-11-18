@@ -13,6 +13,10 @@ namespace Application.Users.Queries.GetUserDetails
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string TelephoneNumber { get; set; }
+        
 
         public void Mapping(Profile profile)
         {
@@ -20,7 +24,14 @@ namespace Application.Users.Queries.GetUserDetails
                 .ForMember(userVm => userVm.Email,
                     opt => opt.MapFrom(user => user.Email))
                 .ForMember(userVm => userVm.Id,
-                    opt => opt.MapFrom(user => user.Id));
+                    opt => opt.MapFrom(user => user.Id))
+                .ForMember(userVm => userVm.Name,
+                    opt => opt.MapFrom(user => user.Name))
+                .ForMember(userVm => userVm.LastName,
+                    opt => opt.MapFrom(user => user.LastName))
+                .ForMember(userVm => userVm.TelephoneNumber,
+                    opt => opt.MapFrom(user => user.TelephoneNumber));
+
         }
     }
 }

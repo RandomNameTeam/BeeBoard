@@ -24,6 +24,9 @@ namespace Application.Users.Commands.CreateUser
                 Id = request.Id,
                 Email = request.Email,
                 Password = request.Password, // TODO сделать шифрование
+                Name = request.Name,
+                LastName = request.LastName,
+                TelephoneNumber = request.TelephoneNumber
             };
 
             await _dbContext.Users.AddAsync(user, cancellationToken);

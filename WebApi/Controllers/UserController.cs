@@ -36,7 +36,7 @@ namespace WebApi.Controllers
         public async Task<ActionResult<Guid>> Create([FromBody] CreateUserDto createUserDto)
         {
             var command = _mapper.Map<CreateUserCommand>(createUserDto);
-            return Ok(UserId);
+            return Ok(command.Id);
         }
     }
 }
