@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Users.Queries.GetUserDetails
+namespace Application.Users.Queries.GetUserList
 {
-    public class GetUserDetailsQuery: IRequest<UserDetailsVm>
+    public class GetUserListQuery: IRequest<UserLIstVm>
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
+
     }
 }

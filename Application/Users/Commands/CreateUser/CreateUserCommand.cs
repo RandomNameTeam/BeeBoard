@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Users.Commands.CreateUser
 {
-    internal class CreateUserCommand: IRequest<Guid>
+    public class CreateUserCommand: IRequest<Guid>
     {
         public Guid Id { get; set; }
         public string Email { get; set; }

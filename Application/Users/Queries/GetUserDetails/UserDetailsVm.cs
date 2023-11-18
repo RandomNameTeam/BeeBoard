@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUserDetails
 {
-    internal class UserDetailsVm: IMapWith<User>
+    public class UserDetailsVm: IMapWith<User>
     {
         public Guid Id { get; set; }
         public string Email { get; set; }

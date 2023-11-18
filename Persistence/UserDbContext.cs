@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    internal class UserDbContext : DbContext, IUserDbContext
+    public class UserDbContext : DbContext, IUserDbContext
     {
         public DbSet<User> Users { get; set; }
 
