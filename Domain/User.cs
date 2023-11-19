@@ -14,5 +14,7 @@ namespace Domain
         public string Name { get; set; }
         public string LastName { get; set; }
         public string TelephoneNumber { get; set; }
+
+        public int Balance { get; set; }
     }
 }

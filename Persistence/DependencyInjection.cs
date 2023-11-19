@@ -32,7 +32,12 @@ namespace Persistence
             services.AddScoped<ICategoryDbContext>(provider =>
                 provider.GetService<CategoryDbContext>());
 
-
+            services.AddDbContext<OrderDbContext>(options =>
+            {
+                options.UseSqlite(connectionString);
+            });
+            services.AddScoped<IOrderDbContext>(provider =>
+                provider.GetService<OrderDbContext>());
 
             return services;
         }
