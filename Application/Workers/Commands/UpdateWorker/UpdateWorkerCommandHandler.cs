@@ -12,9 +12,9 @@ namespace Application.Workers.Commands.UpdateWorker
 {
     internal class UpdateWorkerCommandHandler: IRequestHandler<UpdateWorkerCommand, Guid>
     {
-        public IWorkerDbContext _dbContext;
+        public IUserDbContext _dbContext;
 
-        public UpdateWorkerCommandHandler(IWorkerDbContext dbContext)
+        public UpdateWorkerCommandHandler(IUserDbContext dbContext)
         {
             _dbContext = dbContext;
         }

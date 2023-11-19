@@ -12,23 +12,17 @@ namespace Application.Orders.Commands.CreateOrder
 {
     public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Guid>
     {
-        private readonly IOrderDbContext _dbContext;
-        private readonly IUserDbContext _userDbContext;
-        private readonly IWorkerDbContext _workerDbContext;
+        private readonly IUserDbContext _dbContext;
 
-        public CreateOrderCommandHandler(IOrderDbContext dbContext,
-                                         IWorkerDbContext workerDbContext,
-                                         IUserDbContext userDbContext)
+        public CreateOrderCommandHandler(IUserDbContext dbContext)
         {
             _dbContext = dbContext;
-            _userDbContext = userDbContext;
-            _workerDbContext = workerDbContext;
         }
 
         public async Task<Guid> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var worker = _workerDbContext.Workers.Find(request.WorkerId);
-            var customer = _userDbContext.Users.Find(request.CustomerId);
+            var worker = _dbContext.Workers.Find(request.WorkerId);
+            var customer = _dbContext.Users.Find(request.CustomerId);
 
             if (worker == null && customer == null)
             {

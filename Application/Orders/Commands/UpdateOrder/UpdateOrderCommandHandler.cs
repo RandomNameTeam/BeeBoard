@@ -12,9 +12,9 @@ namespace Application.Orders.Commands.UpdateOrder
 {
     public class UpdateOrderCommandHandler: IRequestHandler<UpdateOrderCommand, Guid>
     {
-        public IOrderDbContext _dbContext;
+        public IUserDbContext _dbContext;
 
-        public UpdateOrderCommandHandler(IOrderDbContext dbContext)
+        public UpdateOrderCommandHandler(IUserDbContext dbContext)
         {
             _dbContext = dbContext;
         }

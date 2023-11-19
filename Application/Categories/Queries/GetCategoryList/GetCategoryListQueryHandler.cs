@@ -14,10 +14,10 @@ namespace Application.Categories.Queries.GetCategoryList
 {
     public class GetCategoryListQueryHandler : IRequestHandler<GetCategoryListQuery, CategoryListVm>
     {
-        private readonly ICategoryDbContext _dbContext;
+        private readonly IUserDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetCategoryListQueryHandler(ICategoryDbContext dbContext, IMapper mapper)
+        public GetCategoryListQueryHandler(IUserDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

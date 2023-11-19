@@ -13,10 +13,9 @@ namespace Application.Orders.Commands.FinishOrder
 {
     public class FinishOrderCommandHandler : IRequestHandler<FinishOrderCommand, Guid>
     {
-        public IOrderDbContext _dbContext;
-        public IUserDbContext _userContext;
+        public IUserDbContext _dbContext;
 
-        public FinishOrderCommandHandler(IOrderDbContext dbContext)
+        public FinishOrderCommandHandler(IUserDbContext dbContext)
         {
             _dbContext = dbContext;
         }

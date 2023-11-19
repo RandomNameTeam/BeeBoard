@@ -13,22 +13,19 @@ namespace Application.Workers.Queries
 {
     internal class GetWorkerDetailsQueryHandler : IRequestHandler<GetWorkerDetailsQuery, WorkerDetailsVm>
     {
-        private readonly IWorkerDbContext _dbContext;
-        private readonly IUserDbContext _userDbContext;
+        private readonly IUserDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetWorkerDetailsQueryHandler(IWorkerDbContext dbContext,
-                                            IMapper mapper,
-                                            IUserDbContext userDbContext)
+        public GetWorkerDetailsQueryHandler(IUserDbContext dbContext,
+                                            IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _userDbContext = userDbContext;
         }
 
         public async Task<WorkerDetailsVm> Handle(GetWorkerDetailsQuery request, CancellationToken cancellationToken)
         {
-            var user = _userDbContext.Users.Find(request.UserId);
+            var user = _dbContext.Users.Find(request.UserId);
             if (user == null)
             {
                 throw new NotFoundException(nameof(User), request.UserId);

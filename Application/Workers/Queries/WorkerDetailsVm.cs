@@ -21,7 +21,7 @@ namespace Application.Workers.Queries
                 .ForMember(workerVm => workerVm.Id,
                     opt => opt.MapFrom(worker => worker.Id))
                 .ForMember(workerVm => workerVm.UserId,
-                    opt => opt.MapFrom(worker => worker.User.Id))
+                    opt => opt.MapFrom(worker => worker.User))
                 .ForMember(workerVm => workerVm.Description,
                     opt => opt.MapFrom(worker => worker.Description));
         }

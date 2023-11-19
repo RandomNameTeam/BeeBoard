@@ -11,6 +11,9 @@ namespace Application.Interfaces
     public interface IUserDbContext
     {
         DbSet<User> Users { get; set; }
+        DbSet<Category> Categories { get; set; }
+        DbSet<Order> Orders { get; set; }
+        DbSet<Worker> Workers { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

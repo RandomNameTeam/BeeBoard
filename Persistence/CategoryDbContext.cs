@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    internal class CategoryDbContext : DbContext, ICategoryDbContext
+    public class CategoryDbContext : DbContext, ICategoryDbContext
     {
         public DbSet<Category> Categories { get; set; }
 

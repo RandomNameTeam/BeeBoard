@@ -13,10 +13,10 @@ namespace Application.Orders.Queries.GetOrder
 {
     public class GetOrderDetailsQueryHandler: IRequestHandler<GetOrderDetailsQuery, OrderDetailsVm>
     {
-        private IOrderDbContext _dbContext;
+        private IUserDbContext _dbContext;
         private IMapper _mapper;
 
-        public GetOrderDetailsQueryHandler(IOrderDbContext dbContext, IMapper mapper) 
+        public GetOrderDetailsQueryHandler(IUserDbContext dbContext, IMapper mapper) 
         {
             _dbContext = dbContext;
             _mapper = mapper;

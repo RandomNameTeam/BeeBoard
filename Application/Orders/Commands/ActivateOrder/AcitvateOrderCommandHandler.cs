@@ -12,17 +12,11 @@ namespace Application.Orders.Commands.ActivateOrder
 {
     public class AcitvateOrderCommandHandler : IRequestHandler<ActivateOrderCommand, Guid>
     {
-        public IOrderDbContext _dbContext;
-        public IUserDbContext _userDbContext;
-        public IWorkerDbContext _workerDbContext;
+        public IUserDbContext _dbContext;
 
-        public AcitvateOrderCommandHandler(IOrderDbContext dbContext,
-                                           IUserDbContext userDbContext,
-                                           IWorkerDbContext workerDbContext)
+        public AcitvateOrderCommandHandler(IUserDbContext dbContext)
         {
             _dbContext = dbContext;
-            _userDbContext = userDbContext;
-            _workerDbContext = workerDbContext;
         }
 
         public async Task<Guid> Handle(ActivateOrderCommand request, CancellationToken cancellationToken)
@@ -33,13 +27,13 @@ namespace Application.Orders.Commands.ActivateOrder
                 throw new  NotFoundException(nameof(Order), request.Id);
             }
 
-            var customer = _userDbContext.Users.Find(request.CustomerId);
+            var customer = _dbContext.Users.Find(request.CustomerId);
             if(customer == null)
             {
                 throw new NotFoundException(nameof(User), request.CustomerId);
             }
 
-            var worker = _workerDbContext.Workers.Find(request.WorkderId);
+            var worker = _dbContext.Workers.Find(request.WorkderId);
             if (worker == null)
             {
                 throw new NotFoundException(nameof(Worker), request.WorkderId);

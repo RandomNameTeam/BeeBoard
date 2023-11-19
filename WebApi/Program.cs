@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
-    config.AddProfile(new AssemblyMappingProfile(typeof(IWorkerDbContext).Assembly));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IUserDbContext).Assembly));
 });
 
 builder.Services.AddApplication();
@@ -66,6 +66,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = serviceProvider.GetRequiredService<UserDbContext>();
         DbInitializer.Initialize(context);
+
     } catch( Exception exception)
     {
 

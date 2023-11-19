@@ -12,14 +12,13 @@ namespace Application.Workers.Commands.CreateWorker
 {
     internal class CreateWorkerCommandHandler : IRequestHandler<CreateWorkerCommand, Guid>
     {
-        private readonly IWorkerDbContext _dbContext;
-        private readonly IUserDbContext _userDbContext;
+        private readonly IUserDbContext _dbContext;
 
-        public CreateWorkerCommandHandler(IWorkerDbContext dbContext) { _dbContext = dbContext; }
+        public CreateWorkerCommandHandler(IUserDbContext dbContext) { _dbContext = dbContext; }
 
         public async Task<Guid> Handle(CreateWorkerCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userDbContext.Users
+            var user = await _dbContext.Users
                 .FirstAsync(user => user.Id == request.UserId, cancellationToken);
 
             var worker = new Worker
